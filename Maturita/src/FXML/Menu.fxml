@@ -28,7 +28,7 @@
                   </Label>
                   <ImageView fitHeight="41.0" fitWidth="46.0" layoutX="169.0" layoutY="22.0">
                      <image>
-                        <Image url="@../../../Maturitni_prace_Drápela/src/Icons/return.png" />
+                        <Image url="@../Icons/RRR.png" />
                      </image>
                   </ImageView>
                </children>
@@ -236,7 +236,7 @@
                   </Label>
                   <ImageView fitHeight="41.0" fitWidth="46.0" layoutX="169.0" layoutY="22.0">
                      <image>
-                        <Image url="@../../../Maturitni_prace_Drápela/src/Icons/WinRate.png" />
+                        <Image url="@../Icons/WhiteWinrate.png" />
                      </image>
                   </ImageView>
                   <Label fx:id="labWinrate" layoutX="14.0" layoutY="42.0" prefHeight="31.0" prefWidth="110.0" text="197545" textFill="WHITE">
@@ -260,7 +260,7 @@
                   </Label>
                   <ImageView fitHeight="41.0" fitWidth="46.0" layoutX="169.0" layoutY="22.0">
                      <image>
-                        <Image url="@../../../Maturitni_prace_Drápela/src/Icons/AvgWin.png" />
+                        <Image url="@../Icons/AWG.png" />
                      </image>
                   </ImageView>
                </children>
@@ -278,7 +278,7 @@
             </ImageView>
             <ImageView fx:id="closeWindowImageView" fitHeight="41.0" fitWidth="46.0" layoutX="1058.0" layoutY="5.0" onMouseClicked="#closeWindow">
                <image>
-                  <Image url="@../../../Maturitni_prace_Drápela/src/Icons/Close.png" />
+                  <Image url="@../Icons/Close.png" />
                </image>
             </ImageView>
             <ImageView fx:id="minimizeWindowImageView" fitHeight="41.0" fitWidth="46.0" layoutX="1002.0" layoutY="5.0" onMouseClicked="#minimizeWindow">
@@ -288,12 +288,12 @@
             </ImageView>
             <ImageView fitHeight="31.0" fitWidth="33.0" layoutX="1031.0" layoutY="282.0">
                <image>
-                  <Image url="@../../../Maturitni_prace_Drápela/src/Icons/Add.png" />
+                  <Image url="@../Icons/Add.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="31.0" fitWidth="33.0" layoutX="1031.0" layoutY="338.0">
                <image>
-                  <Image url="@../../../Maturitni_prace_Drápela/src/Icons/Edit.png" />
+                  <Image url="@../Icons/Edit.png" />
                </image>
             </ImageView>
             <JFXButton fx:id="changeAcc" layoutX="381.0" layoutY="5.0" onAction="#changeScene" prefHeight="41.0" prefWidth="129.0" text="Change account" textFill="WHITE">

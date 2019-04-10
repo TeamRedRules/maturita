@@ -14,6 +14,7 @@ import javafx.scene.control.Tab;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import maturita.Account;
 import maturita.WindowControll;
 
 /**
@@ -23,7 +24,7 @@ import maturita.WindowControll;
  */
 public class MenuController extends WindowControll implements Initializable {
 
-   
+   private Account acc;
 
     /**
      * Initializes the controller class.
@@ -32,6 +33,11 @@ public class MenuController extends WindowControll implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
+    
+    public void setAccount(Account acc)
+    {
+        this.acc = acc;
+    }
 
  
     

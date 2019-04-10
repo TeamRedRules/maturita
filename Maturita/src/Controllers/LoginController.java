@@ -5,10 +5,13 @@
  */
 package Controllers;
 
+import com.jfoenix.controls.JFXPasswordField;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -25,6 +28,8 @@ public class LoginController extends WindowControll  implements Initializable {
     private Label error;
     @FXML
     private ImageView closeWindowImageView;
+    @FXML
+    private JFXPasswordField passwordField;
 
     /**
      * Initializes the controller class.
@@ -33,6 +38,14 @@ public class LoginController extends WindowControll  implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
+    
+    @FXML
+    private void login(ActionEvent event)
+    {
+       
+        if(!this.mainController.login(this.passwordField.getText()))
+            this.error.setText("Wrong Password");
+    }
 
 
     

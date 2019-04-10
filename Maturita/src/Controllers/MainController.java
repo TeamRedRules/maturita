@@ -6,6 +6,9 @@
 package Controllers;
 
 import java.io.IOException;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -28,6 +31,7 @@ public class MainController {
     private ChangePasswordController changePasswordController;
     private ChangeAccountController changeAccountController;
     private  Stage secondaryStage;
+    private DBController dbController;
     
     private FXMLLoader loginFXML,menuFXML,enterTradeFXML,editTradeListFXML,editTradeFXML,createAccountFXML,changePasswordFXML,changeAccountFXML;
     private Parent loginParent,menuParent,enterTradeParent,editTradeListParent,editTradeParent,createAccountParent,changePasswordParent,changeAccountParent;
@@ -95,7 +99,11 @@ public class MainController {
         this.changeAccountController.setMainController(this);
         
         
-        
+        try {
+            this.dbController = new DBController();
+        } catch (SQLException ex) {
+            Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
         
         
@@ -113,7 +121,17 @@ public class MainController {
         {
             // potvrzení hesla -> menu
             case"login":
-                this.stage.setScene(menuScene);
+                // nutnost zjistit jestli je vytvořený acc, pokud ne vytvořit, poté  vyhledat aktivní acc, updatovat jeho statistiky a poslat ho do menuControlleru
+                if(this.dbController.doesAccExist())
+                {
+                    this.menuController.setAccount(this.dbController.getActiveAccount());
+                    this.stage.setScene(menuScene);
+                    // pokud už je acc vytvořený, vzít ho updatovat a poslat dál
+                }
+                else
+                    this.stage.setScene(createAccountScene);
+                    //vytvořit nový acc
+               
                 break;
             // změnění hesla -> changePasswordScene
             case"changePsw":
@@ -125,6 +143,7 @@ public class MainController {
                 break;
            // vytvořit nový učet -> createAcc     
             case"addAccount":
+                
                 this.secondaryStage.setScene(this.createAccountScene);
                 this.secondaryStage.show();
                 break;
@@ -153,6 +172,17 @@ public class MainController {
         
         }
     
-    
     }
+        public boolean login(String psw)
+        {
+            System.out.println(psw);
+            if(this.dbController.login(psw))
+            {
+                this.changeScene("login");
+                return true;
+            }
+            else 
+                return false;
+        
+        }
 }

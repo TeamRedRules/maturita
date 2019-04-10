@@ -20,7 +20,7 @@
             </JFXButton>
             <ImageView fx:id="closeWindowImageView" fitHeight="43.0" fitWidth="43.0" layoutX="765.0" onMouseClicked="#closeWindow" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../Maturitni_prace_Drápela/src/Icons/Close.png" />
+                  <Image url="@../Icons/Close.png" />
                </image>
             </ImageView>
             <Label alignment="CENTER" contentDisplay="CENTER" layoutX="324.0" layoutY="14.0" prefHeight="43.0" prefWidth="167.0" text="Choose trade " textFill="WHITE">

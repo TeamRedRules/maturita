@@ -9,7 +9,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.CreateAccountController">
+<AnchorPane id="AnchorPane" onMouseDragged="#windowDragged" onMousePressed="#mousePressed" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.CreateAccountController">
    <children>
       <Pane layoutY="-6.0" prefHeight="406.0" prefWidth="600.0" style="-fx-background-color: #5590B5;">
          <children>
@@ -31,7 +31,7 @@
             </Pane>
             <ImageView fx:id="closeWindowImageView" fitHeight="41.0" fitWidth="46.0" layoutX="547.0" onMouseClicked="#closeWindow">
                <image>
-                  <Image url="@../../../Maturitni_prace_Drápela/src/Icons/Close.png" />
+                  <Image url="@../Icons/Close.png" />
                </image>
             </ImageView>
             <JFXButton fx:id="createAcc" layoutX="241.0" layoutY="312.0" onAction="#changeScene" prefHeight="41.0" prefWidth="120.0" style="-fx-border-width: 2px; -fx-border-color: white;" text="ADD" textFill="WHITE">
