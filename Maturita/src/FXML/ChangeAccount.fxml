@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" onMouseDragged="#windowDragged" onMousePressed="#mousePressed" prefHeight="364.0" prefWidth="485.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.ChangeAccountController">
+   <children>
+      <Pane prefHeight="382.0" prefWidth="507.0" style="-fx-background-color: #5590B5;">
+         <children>
+            <Pane layoutX="83.0" layoutY="55.0" prefHeight="241.0" prefWidth="333.0" style="-fx-background-color: #00A7E1; -fx-border-color: white; -fx-border-width: 2px;">
+               <children>
+                  <JFXComboBox fx:id="comboAcc" layoutX="63.0" layoutY="108.0" prefHeight="25.0" prefWidth="217.0" />
+               </children>
+            </Pane>
+            <ImageView fx:id="closeWindowImageView" fitHeight="41.0" fitWidth="46.0" layoutX="451.0" onMouseClicked="#closeWindow">
+               <image>
+                  <Image url="@../../../Maturitni_prace_Drápela/src/Icons/Close.png" />
+               </image>
+            </ImageView>
+            <JFXButton fx:id="confirmChangeAcc" layoutX="182.0" layoutY="317.0" onAction="#changeScene" prefHeight="41.0" prefWidth="120.0" style="-fx-border-width: 2px; -fx-border-color: white;" text="CHANGE" textFill="WHITE">
+               <font>
+                  <Font name="AR CENA" size="18.0" />
+               </font>
+            </JFXButton>
+            <Label layoutX="182.0" layoutY="14.0" prefHeight="31.0" prefWidth="145.0" text="Choose Account" textFill="WHITE">
+               <font>
+                  <Font name="AR CENA" size="22.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

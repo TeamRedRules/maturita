@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import com.jfoenix.controls.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.CreateAccountController">
+   <children>
+      <Pane layoutY="-6.0" prefHeight="406.0" prefWidth="600.0" style="-fx-background-color: #5590B5;">
+         <children>
+            <Pane layoutX="134.0" layoutY="56.0" prefHeight="241.0" prefWidth="333.0" style="-fx-background-color: #00A7E1; -fx-border-color: white; -fx-border-width: 2px;">
+               <children>
+                  <Label layoutX="14.0" layoutY="60.0" prefHeight="31.0" prefWidth="106.0" text="Acc Number" textFill="WHITE">
+                     <font>
+                        <Font name="AR CENA" size="22.0" />
+                     </font>
+                  </Label>
+                  <JFXTextField fx:id="accNumber" focusColor="WHITE" layoutX="141.0" layoutY="63.0" />
+                  <Label layoutX="14.0" layoutY="107.0" prefHeight="31.0" prefWidth="106.0" text="Acc balance" textFill="WHITE">
+                     <font>
+                        <Font name="AR CENA" size="22.0" />
+                     </font>
+                  </Label>
+                  <JFXTextField fx:id="accBalance" focusColor="WHITE" layoutX="141.0" layoutY="110.0" />
+               </children>
+            </Pane>
+            <ImageView fx:id="closeWindowImageView" fitHeight="41.0" fitWidth="46.0" layoutX="547.0" onMouseClicked="#closeWindow">
+               <image>
+                  <Image url="@../../../Maturitni_prace_Drápela/src/Icons/Close.png" />
+               </image>
+            </ImageView>
+            <JFXButton fx:id="createAcc" layoutX="241.0" layoutY="312.0" onAction="#changeScene" prefHeight="41.0" prefWidth="120.0" style="-fx-border-width: 2px; -fx-border-color: white;" text="ADD" textFill="WHITE">
+               <font>
+                  <Font name="AR CENA" size="18.0" />
+               </font>
+            </JFXButton>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

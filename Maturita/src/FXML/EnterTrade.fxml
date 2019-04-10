@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" onMouseDragged="#windowDragged" onMousePressed="#mousePressed" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.EnterTradeController">
+   <children>
+      <Pane layoutX="-11.0" layoutY="-4.0" prefHeight="595.0" prefWidth="815.0" style="-fx-background-color: #5590B5;">
+         <children>
+            <JFXButton fx:id="addTradeOK" layoutX="324.0" layoutY="497.0" onAction="#changeScene" prefHeight="44.0" prefWidth="167.0" style="-fx-border-width: 2px; -fx-border-color: white;" text="ADD" textFill="WHITE">
+               <font>
+                  <Font name="AR CENA" size="18.0" />
+               </font>
+            </JFXButton>
+            <Pane layoutX="145.0" layoutY="70.0" prefHeight="387.0" prefWidth="525.0" style="-fx-background-color: #00A7E1; -fx-border-color: white; -fx-borde-width: 2px;">
+               <children>
+                  <Label layoutX="24.0" layoutY="103.0" prefHeight="31.0" prefWidth="110.0" text="Enter Price" textFill="WHITE">
+                     <font>
+                        <Font name="AR CENA" size="26.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="24.0" layoutY="206.0" prefHeight="36.0" prefWidth="134.0" text="Position Size" textFill="WHITE">
+                     <font>
+                        <Font name="AR CENA" size="26.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="24.0" layoutY="154.0" prefHeight="31.0" prefWidth="110.0" text="Stop Loss" textFill="WHITE">
+                     <font>
+                        <Font name="AR CENA" size="26.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="26.0" layoutY="49.0" prefHeight="31.0" prefWidth="110.0" text="Currency" textFill="WHITE">
+                     <font>
+                        <Font name="AR CENA" size="26.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="24.0" layoutY="253.0" prefHeight="31.0" prefWidth="110.0" text="Type " textFill="WHITE">
+                     <font>
+                        <Font name="AR CENA" size="26.0" />
+                     </font>
+                  </Label>
+                  <JFXTextField fx:id="enterPriceText" layoutX="242.0" layoutY="109.0" />
+                  <JFXTextField fx:id="stopLossText" layoutX="242.0" layoutY="159.0" />
+                  <JFXTextField fx:id="positionSizeText" layoutX="242.0" layoutY="211.0" />
+                  <JFXComboBox fx:id="currencyComboBox" layoutX="242.0" layoutY="55.0" prefHeight="25.0" prefWidth="135.0" />
+                  <JFXComboBox fx:id="typeComboBox" layoutX="242.0" layoutY="271.0" prefHeight="25.0" prefWidth="135.0" />
+               </children>
+            </Pane>
+            <ImageView fx:id="closeWindowImageView" fitHeight="43.0" fitWidth="48.0" layoutX="770.0" layoutY="2.0" onMouseClicked="#closeWindow" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../Maturitni_prace_Drápela/src/Icons/Close.png" />
+               </image>
+            </ImageView>
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="324.0" layoutY="14.0" prefHeight="43.0" prefWidth="167.0" text="Add trade" textFill="WHITE">
+               <font>
+                  <Font name="AR CENA" size="31.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

@@ -1,0 +1,50 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 12.10.2018, 10:12:20
+    Author     : skolniPC
+*/
+
+
+.tab-header-background
+{
+    -fx-background-color:  #0089B9;
+   
+}
+
+.tab-pane
+{
+    
+    -fx-background-color: #2EB7E6;
+    
+    
+    
+}
+.tab
+{
+    -fx-background-color:  #0089B9;
+    
+    
+}
+ .tab-label
+ {
+      -fx-text-fill:white;
+      
+     
+ }
+ 
+ 
+
+.tab:selected
+{
+    -fx-background-color: #2EB7E6;
+    -fx-margin: 5px;
+    -fx-border-insets: 0;
+    -fx-border-width: 0 0 1 0 ;
+    -fx-border-color: white;
+    
+}
+

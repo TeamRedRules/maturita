@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" onMouseDragged="#windowDragged" onMousePressed="#mousePressed" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.EditTradeListController">
+   <children>
+      <Pane layoutX="-2.0" prefHeight="595.0" prefWidth="815.0" style="-fx-background-color: #5590B5;">
+         <children>
+            <JFXButton fx:id="editTradeOpen" layoutX="324.0" layoutY="497.0" prefHeight="44.0" prefWidth="167.0" style="-fx-border-width: 2px; -fx-border-color: White;" text="EDIT" textFill="WHITE">
+               <font>
+                  <Font name="AR CENA" size="18.0" />
+               </font>
+            </JFXButton>
+            <ImageView fx:id="closeWindowImageView" fitHeight="43.0" fitWidth="43.0" layoutX="765.0" onMouseClicked="#closeWindow" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../Maturitni_prace_Drápela/src/Icons/Close.png" />
+               </image>
+            </ImageView>
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="324.0" layoutY="14.0" prefHeight="43.0" prefWidth="167.0" text="Choose trade " textFill="WHITE">
+               <font>
+                  <Font name="AR CENA" size="31.0" />
+               </font>
+            </Label>
+            <TableView fx:id="tradeTable" layoutX="225.0" layoutY="86.0" prefHeight="395.0" prefWidth="365.0">
+               <columns>
+                  <TableColumn fx:id="currency" prefWidth="84.0" text="Currency" />
+                  <TableColumn fx:id="positionSize" minWidth="8.0" prefWidth="105.0" text="PositionSize" />
+                  <TableColumn fx:id="type" prefWidth="63.0" text="Type" />
+                  <TableColumn fx:id="result" prefWidth="111.0" text="result" />
+               </columns>
+            </TableView>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>
