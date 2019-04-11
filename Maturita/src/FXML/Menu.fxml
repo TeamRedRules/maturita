@@ -61,7 +61,7 @@
                                           <Font name="AR CENA" size="19.0" />
                                        </font>
                                     </Label>
-                                    <Label fx:id="dailyWinrate" layoutX="169.0" layoutY="75.0" prefHeight="27.0" prefWidth="46.0" text="0" textFill="WHITE">
+                                    <Label fx:id="dailyWinrate" layoutX="169.0" layoutY="75.0" prefHeight="27.0" prefWidth="24.0" text="0" textFill="WHITE">
                                        <font>
                                           <Font name="AR CENA" size="19.0" />
                                        </font>

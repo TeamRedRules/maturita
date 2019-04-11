@@ -110,7 +110,7 @@ public class MainController {
         this.stage = stage;
         stage.initStyle(StageStyle.UNDECORATED);
         stage.setScene(loginScene);
-        
+        System.out.println(0/1);
         stage.show();
     }
     
@@ -124,6 +124,8 @@ public class MainController {
                 // nutnost zjistit jestli je vytvořený acc, pokud ne vytvořit, poté  vyhledat aktivní acc, updatovat jeho statistiky a poslat ho do menuControlleru
                 if(this.dbController.doesAccExist())
                 {
+                    this.dbController.updateAcc();
+                    this.menuController.updateTab(this.dbController.updateTab());
                     this.menuController.setAccount(this.dbController.getActiveAccount());
                     this.stage.setScene(menuScene);
                     // pokud už je acc vytvořený, vzít ho updatovat a poslat dál
