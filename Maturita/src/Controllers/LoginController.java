@@ -7,7 +7,11 @@ package Controllers;
 
 import com.jfoenix.controls.JFXPasswordField;
 import java.net.URL;
+import java.sql.SQLException;
+import java.text.ParseException;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -44,7 +48,17 @@ public class LoginController extends WindowControll  implements Initializable {
     {
        
         if(!this.mainController.login(this.passwordField.getText()))
+        {
             this.error.setText("Wrong Password");
+        }
+        else
+            try {
+                this.changeScene(event);
+        } catch (SQLException ex) {
+            Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ParseException ex) {
+            Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
 

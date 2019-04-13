@@ -5,12 +5,18 @@
  */
 package Controllers;
 
+import com.jfoenix.controls.JFXTextField;
 import java.net.URL;
+import java.sql.SQLException;
+import java.text.ParseException;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import maturita.Account;
 import maturita.WindowControll;
 
 /**
@@ -22,6 +28,8 @@ public class CreateAccountController extends WindowControll implements Initializ
 
     @FXML
     private ImageView closeWindowImageView;
+    @FXML
+    JFXTextField accNumber,accBalance;
 
     /**
      * Initializes the controller class.
@@ -31,6 +39,10 @@ public class CreateAccountController extends WindowControll implements Initializ
         // TODO
     }    
 
+    public Account createAccount() 
+    {
+        return new Account(accNumber.getText(),Integer.valueOf(this.accBalance.getText()),1,0,0,0);
+    }
 
     
 }

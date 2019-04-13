@@ -8,8 +8,12 @@ package Controllers;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.chart.LineChart;
+import javafx.scene.control.Button;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.Tab;
 import javafx.scene.image.ImageView;
@@ -29,6 +33,10 @@ public class MenuController extends WindowControll implements Initializable {
     @FXML private Label dailyProfit,dailyWinrate,dailyClosed,dailyTaken;
     @FXML private Label weeklyProfit,weeklyWinrate,weeklyClosed,weeklyTaken;
     @FXML private Label monthlyProfit,monthlyWinrate,monthlyClosed,monthlyTaken;
+    @FXML private Label customProfit,customWinrate,customClosed,customTaken;
+    @FXML private DatePicker dateSince,dateTo;
+
+    @FXML private LineChart Chart;
     
     private Account acc;
 
@@ -55,9 +63,9 @@ public class MenuController extends WindowControll implements Initializable {
         this.labAcc.setText(String.valueOf(this.acc.getAccountNumber()));
     }
 
-    void updateTab(ArrayList array) {
+    public void updateTab(ArrayList array) {
         //DAILY
-        
+        System.out.println(array.get(1)+ " " + array.get(3));
         this.dailyProfit.setText((String) array.get(2));
         this.dailyWinrate.setText(String.valueOf(100*(Float.valueOf((String)array.get(3)) / Float.valueOf((String)array.get(1)))));
         this.dailyClosed.setText(String.valueOf(array.get(1)));
@@ -69,7 +77,50 @@ public class MenuController extends WindowControll implements Initializable {
         this.weeklyClosed.setText(String.valueOf(array.get(7)));
         this.weeklyTaken.setText(String.valueOf(array.get(6)));
         
+        //MOMNTHLY
+        this.monthlyProfit.setText((String)array.get(14));
+        this.monthlyWinrate.setText(String.valueOf(100*(Float.valueOf((String)array.get(15)) / Float.valueOf((String)array.get(13)))));
+        this.monthlyClosed.setText((String)array.get(13));
+        this.monthlyTaken.setText((String)array.get(12));
+        
       
+    }
+    
+    @FXML
+    private void setCustomStats()
+    {
+        ArrayList array = this.mainController.getCustomStats(this.dateSince.getValue(),this.dateTo.getValue());
+        System.out.println(array.get(2) );
+        this.customProfit.setText((String) array.get(2));
+        this.customWinrate.setText(String.valueOf(100*(Float.valueOf((String)array.get(3)) / Float.valueOf((String)array.get(1)))));
+        this.customClosed.setText(String.valueOf(array.get(1)));
+        this.customTaken.setText(String.valueOf(array.get(0)));
+        
+    
+    
+    
+    }
+    
+    @FXML 
+    private void changeChart(ActionEvent event)
+    {
+       Button btn = (Button) event.getSource();
+        ArrayList array=null;
+       switch(btn.getId())
+      
+       {
+           case"dailyChart":
+               array=this.mainController.getDailyChart();
+               break;
+           case"weeklyChart":
+               break;
+           case"monthlyChart":
+               break;
+               
+       
+       
+       
+       }
     }
 
  

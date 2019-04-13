@@ -13,7 +13,7 @@
    <children>
       <Pane layoutX="-2.0" prefHeight="595.0" prefWidth="815.0" style="-fx-background-color: #5590B5;">
          <children>
-            <JFXButton fx:id="editTradeOpen" layoutX="324.0" layoutY="497.0" prefHeight="44.0" prefWidth="167.0" style="-fx-border-width: 2px; -fx-border-color: White;" text="EDIT" textFill="WHITE">
+            <JFXButton fx:id="editTradeOpen" layoutX="324.0" layoutY="497.0" onAction="#changeScene" prefHeight="44.0" prefWidth="167.0" style="-fx-border-width: 2px; -fx-border-color: White;" text="EDIT" textFill="WHITE">
                <font>
                   <Font name="AR CENA" size="18.0" />
                </font>

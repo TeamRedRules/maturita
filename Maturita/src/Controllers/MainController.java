@@ -7,6 +7,10 @@ package Controllers;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.fxml.FXML;
@@ -15,6 +19,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import maturita.Account;
 
 /**
  *
@@ -110,7 +115,7 @@ public class MainController {
         this.stage = stage;
         stage.initStyle(StageStyle.UNDECORATED);
         stage.setScene(loginScene);
-        System.out.println(0/1);
+       
         stage.show();
     }
     
@@ -124,67 +129,141 @@ public class MainController {
                 // nutnost zjistit jestli je vytvořený acc, pokud ne vytvořit, poté  vyhledat aktivní acc, updatovat jeho statistiky a poslat ho do menuControlleru
                 if(this.dbController.doesAccExist())
                 {
-                    this.dbController.updateAcc();
+                   // this.dbController.updateAcc();
                     this.menuController.updateTab(this.dbController.updateTab());
                     this.menuController.setAccount(this.dbController.getActiveAccount());
                     this.stage.setScene(menuScene);
+                    break;
                     // pokud už je acc vytvořený, vzít ho updatovat a poslat dál
                 }
                 else
                     this.stage.setScene(createAccountScene);
                     //vytvořit nový acc
-               
                 break;
+                
             // změnění hesla -> changePasswordScene
             case"changePsw":
                 this.stage.setScene(this.changePasswordScene);
                 break;
+                
             // potvrzení změněného hesla
             case"newPsw":
                 this.stage.setScene(loginScene);
                 break;
-           // vytvořit nový učet -> createAcc     
+           
+            // vytvořit nový učet -> createAcc     
             case"addAccount":
                 
                 this.secondaryStage.setScene(this.createAccountScene);
                 this.secondaryStage.show();
                 break;
+                
             case"changeAcc":
+                this.changeAccountController.setAccList(this.dbController.getAllAccounts());
                 this.secondaryStage.setScene(this.changeAccountScene);
                 this.secondaryStage.show();
                 break;
+                
             case"addTrade":
                 this.secondaryStage.setScene(this.enterTradeScene);
                 this.secondaryStage.show();
                 break;
+                
             case"editTradeList":
+                System.out.println("editTradeList");
+                try {
+                    this.editTradeListController.updateTableView(this.dbController.getTrades());
+                
+                } catch (ParseException ex) {
+                Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+               
                 this.secondaryStage.setScene(this.editTradeListScene);
                 this.secondaryStage.show();
                 break;
             case"confirmEdit":
+                this.dbController.updateTrade(this.editTradeController.update());
+                this.dbController.updateAcc();
+                this.dbController.updateAccBalance(this.editTradeController.update());
+                this.menuController.setAccount(this.dbController.getActiveAccount());
+                this.menuController.updateTab(this.dbController.updateTab());
+                this.secondaryStage.close();
+                
+       
                 break;
             case"confirmChangeAcc":
-                break;
-            case"createAcc":
+                this.dbController.setAccountInactive();
+                this.dbController.setAccountActive(this.changeAccountController.getSelectedAccount());
+                this.menuController.setAccount(this.changeAccountController.getSelectedAccount());
+                this.menuController.updateTab(this.dbController.updateTab());
+                this.secondaryStage.close(); 
                 break;
                 
-            
-        
-        
-        
+            case"createAcc":
+               
+                if(!this.dbController.doesAccExist())
+                {
+                    this.dbController.createAccount(this.createAccountController.createAccount());
+                    this.menuController.setAccount(this.dbController.getActiveAccount());
+                    this.menuController.updateTab(this.dbController.updateTab());
+                    this.stage.setScene(this.menuScene);
+                }
+                
+                 else
+                    
+                {
+                    this.dbController.setAccountInactive();
+                    this.dbController.createAccount(this.createAccountController.createAccount());
+                    this.menuController.setAccount(this.dbController.getActiveAccount());
+                    this.menuController.updateTab(this.dbController.updateTab());
+                }
+                this.secondaryStage.close();
+                break;
+                
+            case"addTradeOK":
+                this.dbController.createTrade(this.enterTradeController.getTrade());
+                this.menuController.updateTab(this.dbController.updateTab());
+                this.secondaryStage.close();
+                break;
+                
+            case"editTradeOpen":
+                 {
+            try {
+                this.editTradeController.setTrade(this.editTradeListController.sendChoosenTrade());
+            } catch (SQLException ex) {
+                Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (ParseException ex) {
+                Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
-    
+                 this.secondaryStage.setScene(this.editTradeScene);
+                 break;
+        }
     }
         public boolean login(String psw)
         {
-            System.out.println(psw);
+            
             if(this.dbController.login(psw))
             {
-                this.changeScene("login");
+               
                 return true;
             }
             else 
                 return false;
         
         }
+
+    public ArrayList getCustomStats(LocalDate since,LocalDate to) {
+        return this.dbController.getCustomStats(since,to);
+    }
+
+    public  ArrayList getDailyChart() {
+       return this.dbController.getDailyChart();
+    }
+
+   public  int getActiveAccID() {
+        return this.dbController.findActiveAccID();
+    }
+
+ 
 }
