@@ -392,7 +392,7 @@ public class DBController {
             
             // MONTHLY
             
-             rs  = connection.createStatement().executeQuery("Select Count(*) From Trade where AccID = "  + id + "  and  EndDate between datetime('now', '-1 month') AND datetime('now', 'localtime')");
+             rs  = connection.createStatement().executeQuery("Select Count(*) From Trade where AccID = "  + id + "  and  OpenDate between datetime('now', '-1 month') AND datetime('now', 'localtime')");
              array.add(rs.getString(1));
              rs.close();
          
@@ -460,10 +460,7 @@ public class DBController {
         return array;
     }
 
-    public ArrayList getDailyChart() {
-        
-        return null;
-    }
+   
 
     public void createAccount(Account acc) {
         try {
@@ -567,7 +564,8 @@ public class DBController {
         PreparedStatement stm = null;
         if(trade.getResult() != 0)
         {   
-            
+            if(trade.getIsActive() == 1)
+            {
              try {
                  sql = "Update Trade SET Currency = ?,PositionSize = ? , SL = ? ,EnterPrice = ? ,Type = ? , Result = ? ,IsActive=? , EndDate = ? WHERE ID = ?";
                  stm = this.connection.prepareStatement(sql);
@@ -607,7 +605,47 @@ public class DBController {
              }
             
         }
-    
+        }
+        else
+        {
+            try {
+                 sql = "Update Trade SET Currency = ?,PositionSize = ? , SL = ? ,EnterPrice = ? ,Type = ? , Result = ?  WHERE ID = ?";
+                 stm = this.connection.prepareStatement(sql);
+                 stm.setString(1,trade.getCurrency());
+                 stm.setFloat(2,trade.getPositionSize());
+                 stm.setFloat(3,trade.getSl());
+                 stm.setFloat(4,trade.getEnterPrice());
+                 stm.setString(5,trade.getType());
+                 stm.setFloat(6,trade.getResult());
+                 stm.setFloat(7,trade.getID());
+                 System.out.println("dokonceny trade");
+                 System.out.println("Novy trade" + trade.getResult());
+             } catch (SQLException ex) {
+                 Logger.getLogger(DBController.class.getName()).log(Level.SEVERE, null, ex);
+             }
+             
+            
+        
+        
+        
+        {
+             try {
+                 sql = "Update Trade SET Currency = ?,PositionSize = ? , SL = ? ,EnterPrice = ? ,Type = ? , Result = ?  WHERE ID = ?";
+                 stm = this.connection.prepareStatement(sql);
+                 stm.setString(1,trade.getCurrency());
+                 stm.setFloat(2,trade.getPositionSize());
+                 stm.setFloat(3,trade.getSl());
+                 stm.setFloat(4,trade.getEnterPrice());
+                 stm.setString(5,trade.getType());
+                 stm.setFloat(6,trade.getResult());
+                 stm.setFloat(7,trade.getID());
+                 System.out.println( " ID  "   + trade.getID() + " position size  " +   trade.getPositionSize());
+             } catch (SQLException ex) {
+                 Logger.getLogger(DBController.class.getName()).log(Level.SEVERE, null, ex);
+             }
+            
+        }
+        }
        
         try {
             stm.executeUpdate();
@@ -634,5 +672,96 @@ public class DBController {
         } catch (SQLException ex) {
             Logger.getLogger(DBController.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+    
+    
+    
+    public ArrayList getDailyChart() {
+        try {
+            ArrayList array = new ArrayList();
+            
+            ResultSet rs= null;
+            
+            
+            int id =this.findActiveAccID();
+            
+            rs  = connection.createStatement().executeQuery("Select Count(*) From Trade where AccID = "  + id + "  and  EndDate = '" + String.valueOf((new Date(System.currentTimeMillis())))+ "'");
+            array.add(rs.getString(1));
+            
+            rs  = connection.createStatement().executeQuery("Select  Result From Trade where AccID = "  + id + "  and  EndDate = '" + String.valueOf((new Date(System.currentTimeMillis())))+ "'");
+            while(rs.next())
+            {
+                array.add(rs.getString("Result"));
+
+            }
+            rs.close();
+            return array;
+            
+           
+        } catch (SQLException ex) {
+            Logger.getLogger(DBController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+         return null;
+    }
+
+    public ArrayList getWeeklyChart() {
+        
+        System.out.println("WEEKLY");
+            try {
+            ArrayList array = new ArrayList();
+            
+            ResultSet rs= null;
+            
+            
+            int id =this.findActiveAccID();
+            
+            rs  = connection.createStatement().executeQuery("Select Count(*) From Trade where AccID = "  + id + "  and  EndDate BETWEEN datetime('now', '-6 days') AND datetime('now', 'localtime')");
+            array.add(rs.getString(1));
+            System.out.println(rs.getString(1));
+            
+            rs  = connection.createStatement().executeQuery("Select  Result From Trade where AccID = "  + id + "  and  EndDate BETWEEN datetime('now', '-6 days') AND datetime('now', 'localtime')");
+            while(rs.next())
+            {
+                array.add(rs.getString("Result"));
+
+            }
+            rs.close();
+            return array;
+            
+           
+        } catch (SQLException ex) {
+            Logger.getLogger(DBController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+         return null;
+    }
+
+    public ArrayList getMonthlyChart() {
+         try {
+            ArrayList array = new ArrayList();
+            
+            ResultSet rs= null;
+            
+            
+            int id =this.findActiveAccID();
+            
+            rs  = connection.createStatement().executeQuery("Select Count(*) From Trade where AccID = "  + id + "  and  EndDate BETWEEN datetime('now', '-1 month') AND datetime('now', 'localtime')");
+            array.add(rs.getString(1));
+            
+            
+            rs  = connection.createStatement().executeQuery("Select  Result From Trade where AccID = "  + id + "  and  EndDate BETWEEN datetime('now', '-1 month') AND datetime('now', 'localtime')");
+            while(rs.next())
+            {
+                array.add(rs.getString("Result"));
+
+            }
+            rs.close();
+            
+            return array;
+            
+           
+        } catch (SQLException ex) {
+            Logger.getLogger(DBController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+         return null;
     }
 }

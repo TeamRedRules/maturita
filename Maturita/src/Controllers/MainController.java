@@ -257,8 +257,23 @@ public class MainController {
         return this.dbController.getCustomStats(since,to);
     }
 
-    public  ArrayList getDailyChart() {
-       return this.dbController.getDailyChart();
+    public  ArrayList getChart(String id ) {
+       
+        switch(id)
+        {
+            case"dailyChart":
+                return this.dbController.getDailyChart();
+              
+            case"weeklyChart":
+                return this.dbController.getWeeklyChart();
+                
+            case"monthlyChart":
+                return this.dbController.getMonthlyChart();
+         
+        
+        
+        }
+        return null;
     }
 
    public  int getActiveAccID() {

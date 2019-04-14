@@ -6,12 +6,14 @@
 package Controllers;
 
 import java.net.URL;
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.chart.LineChart;
+import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
@@ -35,8 +37,7 @@ public class MenuController extends WindowControll implements Initializable {
     @FXML private Label monthlyProfit,monthlyWinrate,monthlyClosed,monthlyTaken;
     @FXML private Label customProfit,customWinrate,customClosed,customTaken;
     @FXML private DatePicker dateSince,dateTo;
-
-    @FXML private LineChart Chart;
+    @FXML private LineChart<String,Float> chart;
     
     private Account acc;
 
@@ -105,22 +106,22 @@ public class MenuController extends WindowControll implements Initializable {
     private void changeChart(ActionEvent event)
     {
        Button btn = (Button) event.getSource();
-        ArrayList array=null;
-       switch(btn.getId())
+        ArrayList array = this.mainController.getChart(btn.getId());
+        chart.getData().clear();
+        XYChart.Series<String,Float>series = new XYChart.Series<>();
+        
       
-       {
-           case"dailyChart":
-               array=this.mainController.getDailyChart();
-               break;
-           case"weeklyChart":
-               break;
-           case"monthlyChart":
-               break;
-               
+        float result =0;
+        for(int i = 1; i <= Integer.parseInt((String)array.get(0)) ;i++)
+        {
+            result  += Float.parseFloat((String)array.get(i));
+            series.getData().add(new XYChart.Data<String,Float>(String.valueOf(i),result));
+        
+        
+        }
+        
        
-       
-       
-       }
+        chart.getData().add(series);
     }
 
  
